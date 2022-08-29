@@ -1,0 +1,6 @@
+TARGET_APIC,TENANT_NAME,VRF_NAME,BD_NAME,BD_DESCRIPTION,arpFlood,SUBNET_GATEWAY,SUBNET_SCOPE,STATE
+10.10.20.14,ACI101_PRD_NCI,ACI101_PRD_NCI_DEF_VRF,ACI101_PRD_NCI_DATA_VLAN10_BD,ACI 101 Production Network Centric Infrastructure Data VLAN 10,true,30.0.10.1/24,public,"created,modified"
+10.10.20.14,ACI101_PRD_NCI,ACI101_PRD_NCI_DEF_VRF,ACI101_PRD_NCI_DATA_VLAN20_BD,ACI 101 Production Network Centric Infrastructure Data VLAN 20,true,30.0.20.1/24,public,"created,modified"
+10.10.20.14,ACI101_PRD_NCI,ACI101_PRD_NCI_DEF_VRF,ACI101_PRD_NCI_DATA_VLAN30_BD,ACI 101 Production Network Centric Infrastructure Data VLAN 30,true,30.0.30.1/24,public,"created,modified"
+10.10.20.14,ACI101_PRD_NCI,ACI101_PRD_NCI_DEF_VRF,ACI101_PRD_NCI_REPL_VLAN40_BD,ACI 101 Production Network Centric Infrastructure Replication VLAN 40,true,30.0.40.1/24,public,"created,modified"
+10.10.20.14,ACI101_PRD_NCI,ACI101_PRD_NCI_DEF_VRF,ACI101_PRD_NCI_MGMT_VLAN50_BD,ACI 101 Production Network Centric Infrastructure Management VLAN 50,true,30.0.50.1/24,public,"created,modified"

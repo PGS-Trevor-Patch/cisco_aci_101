@@ -1,0 +1,6 @@
+TARGET_APIC,TENANT_NAME,AP_NAME,aEPG_NAME,aEPG_DESCRIPTION,BD_NAME,STATE
+10.10.20.14,ACI101_PRD_NCI,ACI101_PRD_NCI_AP,ACI101_PRD_NCI_DATA_VLAN10_EPG,ACI 101 Production Network Centric Infrastructure Data VLAN 10 Static Bindings Endpoint Group,ACI101_PRD_NCI_DATA_VLAN10_BD,"created,modified"
+10.10.20.14,ACI101_PRD_NCI,ACI101_PRD_NCI_AP,ACI101_PRD_NCI_DATA_VLAN20_EPG,ACI 101 Production Network Centric Infrastructure Data VLAN 20 Static Bindings Endpoint Group,ACI101_PRD_NCI_DATA_VLAN20_BD,"created,modified"
+10.10.20.14,ACI101_PRD_NCI,ACI101_PRD_NCI_AP,ACI101_PRD_NCI_DATA_VLAN30_EPG,ACI 101 Production Network Centric Infrastructure Data VLAN 30 Static Bindings Endpoint Group,ACI101_PRD_NCI_DATA_VLAN30_BD,"created,modified"
+10.10.20.14,ACI101_PRD_NCI,ACI101_PRD_NCI_AP,ACI101_PRD_NCI_REPL_VLAN40_EPG,ACI 101 Production Network Centric Infrastructure Replication VLAN 40 Static Bindings Endpoint Group,ACI101_PRD_NCI_REPL_VLAN40_BD,"created,modified"
+10.10.20.14,ACI101_PRD_NCI,ACI101_PRD_NCI_AP,ACI101_PRD_NCI_MGMT_VLAN50_EPG,ACI 101 Production Network Centric Infrastructure Management VLAN 50 Static Bindings Endpoint Group,ACI101_PRD_NCI_MGMT_VLAN50_BD,"created,modified"

@@ -1,0 +1,2 @@
+TARGET_APIC,TENANT_NAME,VRF_NAME,VRF_DESCRIPTION,VRF_ENFORCEMENT,STATE
+10.10.20.14,ACI101_PRD_NCI,ACI101_PRD_NCI_DEF_VRF,ACI 101 Production Network Centric Infrastructure Default Routing Table Virtual Routing & Forwarding,unenforced,created
