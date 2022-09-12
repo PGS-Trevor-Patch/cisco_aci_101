@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "e35c204e-55ef-452f-b88b-82359cb99df9",
+		"name": "ACI101_POSTMAN_OVERLAY_WORKFLOW",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19118298"
+	},
+	"item": [
+		{
+			"name": "aaaLogin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"aaaUser\": {\r\n    \"attributes\": {\r\n      \"name\": \"{{USERNAME}}\",\r\n      \"pwd\": \"{{PASSWORD}}\"\r\n    }\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.10.20.14/api/aaaLogin.json",
+					"protocol": "https",
+					"host": [
+						"10",
+						"10",
+						"20",
+						"14"
+					],
+					"path": [
+						"api",
+						"aaaLogin.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tenant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fvTenant\": {\r\n    \"attributes\": {\r\n      \"dn\": \"uni/tn-{{TENANT_NAME}}\",\r\n      \"name\": \"{{TENANT_NAME}}\",\r\n      \"descr\": \"{{TENANT_DESCRIPTION}}\",\r\n      \"rn\": \"tn-{{TENANT_NAME}}\",\r\n      \"status\": \"{{STATE}}\"\r\n    },\r\n    \"children\": []\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{TARGET_APIC}}/api/node/mo/uni/tn-{{TENANT_NAME}}.json",
+					"protocol": "https",
+					"host": [
+						"{{TARGET_APIC}}"
+					],
+					"path": [
+						"api",
+						"node",
+						"mo",
+						"uni",
+						"tn-{{TENANT_NAME}}.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VRF",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fvCtx\": {\r\n    \"attributes\": {\r\n        \"dn\": \"uni/tn-{{ACI_TENANT_POST_NAME}}/ctx-{{ACI_VRF_POST_NAME}}\",\r\n        \"name\": \"{{ACI_VRF_POST_NAME}}\",\r\n        \"descr\": \"{{ACI_VRF_POST_DESCRIPTION}}\",\r\n        \"pcEnfPref\": \"{{ACI_VRF_POST_ENFORCEMENT}}\",\r\n        \"rn\": \"ctx-{{ACI_VRF_POST_NAME}}\",\r\n        \"status\": \"{{ACI_VRF_POST_STATE}}\"\r\n    },\r\n    \"children\": []\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{TARGET_APIC}}/api/node/mo/uni/tn-{{ACI_TENANT_POST_NAME}}/ctx-{{ACI_VRF_POST_NAME}}.json",
+					"protocol": "https",
+					"host": [
+						"{{TARGET_APIC}}"
+					],
+					"path": [
+						"api",
+						"node",
+						"mo",
+						"uni",
+						"tn-{{ACI_TENANT_POST_NAME}}",
+						"ctx-{{ACI_VRF_POST_NAME}}.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bridge Domain",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fvBD\": {\r\n    \"attributes\": {\r\n        \"dn\": \"uni/tn-{{ACI_TENANT_POST_NAME}}/BD-{{ACI_BD_POST_NAME}}\",\r\n        \"arpFlood\": \"{{ACI_BD_POST_NAME}}\",\r\n        \"name\": \"{{ACI_BD_POST_NAME}}\",\r\n        \"descr\": \"{{ACI_BD_POST_DESCRIPTION}}\",\r\n        \"rn\": \"{{ACI_BD_POST_NAME}}\",\r\n        \"status\": \"{{ACI_BD_POST_NAME}}\"\r\n    },\r\n    \"children\": [\r\n        {\r\n        \"fvSubnet\": {\r\n            \"attributes\": {\r\n            \"dn\": \"uni/tn-{{ACI_TENANT_POST_NAME}}/BD-{{ACI_BD_POST_NAME}}/subnet-[{{ACI_BD_POST_SUBNET_GATEWAY}}]\",\r\n            \"ctrl\": \"\",\r\n            \"ip\": \"{{ACI_BD_POST_SUBNET_GATEWAY}}\",\r\n            \"scope\": \"{{ACI_BD_POST_SUBNET_SCOPE}}\",\r\n            \"rn\": \"subnet-[{{ACI_BD_POST_SUBNET_GATEWAY}}]\",\r\n            \"status\": \"{{ACI_BD_POST_NAME}}\"\r\n            },\r\n            \"children\": []\r\n        }\r\n        },\r\n        {\r\n        \"fvRsCtx\": {\r\n            \"attributes\": {\r\n            \"tnFvCtxName\": \"{{ACI_VRF_POST_NAME}}\",\r\n            \"status\": \"created,modified\"\r\n            },\r\n            \"children\": []\r\n        }\r\n        }\r\n    ]\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{TARGET_APIC}}/api/node/mo/uni/tn-{{ACI_TENANT_POST_NAME}}/BD-{{ACI_BD_POST_NAME}}.json",
+					"protocol": "https",
+					"host": [
+						"{{TARGET_APIC}}"
+					],
+					"path": [
+						"api",
+						"node",
+						"mo",
+						"uni",
+						"tn-{{ACI_TENANT_POST_NAME}}",
+						"BD-{{ACI_BD_POST_NAME}}.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Application Profile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fvAp\": {\r\n    \"attributes\": {\r\n        \"dn\": \"uni/tn-{{ACI_TENANT_POST_NAME}}/ap-{{ACI_AP_POST_NAME}}\",\r\n        \"name\": \"{{ACI_AP_POST_NAME}}\",\r\n        \"descr\": \"{{ACI_AP_POST_DESCRIPTION}}\",\r\n        \"rn\": \"ap-{{ACI_AP_POST_NAME}}\",\r\n        \"status\": \"{{ACI_AP_POST_STATE}}\"\r\n    },\r\n    \"children\": []\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{TARGET_APIC}}/api/node/mo/uni/tn-{{ACI_TENANT_POST_NAME}}/ap-{{ACI_AP_POST_NAME}}.json",
+					"protocol": "https",
+					"host": [
+						"{{TARGET_APIC}}"
+					],
+					"path": [
+						"api",
+						"node",
+						"mo",
+						"uni",
+						"tn-{{ACI_TENANT_POST_NAME}}",
+						"ap-{{ACI_AP_POST_NAME}}.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Application Endpoint Group",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fvAEPg\": {\r\n    \"attributes\": {\r\n        \"dn\": \"uni/tn-{{ACI_TENANT_POST_NAME}}/ap-{{ACI_AP_POST_NAME}}/epg-{{ACI_aEPG_POST_NAME}}\",\r\n        \"prio\": \"level3\",\r\n        \"name\": \"{{ACI_aEPG_POST_NAME}}\",\r\n        \"descr\": \"{{ACI_aEPG_POST_DESCRIPTION}}\",\r\n        \"rn\": \"epg-{{ACI_aEPG_POST_NAME}}\",\r\n        \"status\": \"{{ACI_aEPG_POST_STATE}}\"\r\n    },\r\n    \"children\": [\r\n        {\r\n        \"fvRsBd\": {\r\n            \"attributes\": {\r\n            \"tnFvBDName\": \"{{ACI_BD_POST_NAME}}\",\r\n            \"status\": \"created,modified\"\r\n            },\r\n            \"children\": []\r\n        }\r\n        }\r\n    ]\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{TARGET_APIC}}/api/node/mo/uni/tn-{{ACI_TENANT_POST_NAME}}/ap-{{ACI_AP_POST_NAME}}/epg-{{ACI_aEPG_POST_NAME}}.json",
+					"protocol": "https",
+					"host": [
+						"{{TARGET_APIC}}"
+					],
+					"path": [
+						"api",
+						"node",
+						"mo",
+						"uni",
+						"tn-{{ACI_TENANT_POST_NAME}}",
+						"ap-{{ACI_AP_POST_NAME}}",
+						"epg-{{ACI_aEPG_POST_NAME}}.json"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

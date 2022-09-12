@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "ead353dc-e8e5-4037-b91f-32c705d54116",
+		"name": "ACI101_POSTMAN_ASS_aEPG-PHYDOM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19118298"
+	},
+	"item": [
+		{
+			"name": "aaaLogin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"aaaUser\": {\r\n    \"attributes\": {\r\n      \"name\": \"{{USERNAME}}\",\r\n      \"pwd\": \"{{PASSWORD}}\"\r\n    }\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.10.20.14/api/aaaLogin.json",
+					"protocol": "https",
+					"host": [
+						"10",
+						"10",
+						"20",
+						"14"
+					],
+					"path": [
+						"api",
+						"aaaLogin.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Associate aEPG to Physical Domain",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fvRsDomAtt\": {\r\n    \"attributes\": {\r\n        \"resImedcy\": \"immediate\",\r\n        \"tDn\": \"uni/phys-{{ACI_PHYS_DOM_POST_NAME}}\",\r\n        \"status\": \"{{ACI_ASSOCIATE_aEPG_PHYSDOMAIN_POST_STATE}}\"\r\n    },\r\n    \"children\": []\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{TARGET_APIC}}/api/node/mo/uni/tn-{{ACI_TENANT_POST_NAME}}/ap-{{ACI_AP_POST_NAME}}/epg-{{ACI_aEPG_POST_NAME}}.json",
+					"protocol": "https",
+					"host": [
+						"{{TARGET_APIC}}"
+					],
+					"path": [
+						"api",
+						"node",
+						"mo",
+						"uni",
+						"tn-{{ACI_TENANT_POST_NAME}}",
+						"ap-{{ACI_AP_POST_NAME}}",
+						"epg-{{ACI_aEPG_POST_NAME}}.json"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

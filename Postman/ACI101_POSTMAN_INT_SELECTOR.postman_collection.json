@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "76f82df7-b9f3-4b83-8cfe-ed14bf8ae1fc",
+		"name": "ACI101_POSTMAN_INT_SELECTOR",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19118298"
+	},
+	"item": [
+		{
+			"name": "aaaLogin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"aaaUser\": {\r\n    \"attributes\": {\r\n      \"name\": \"{{USERNAME}}\",\r\n      \"pwd\": \"{{PASSWORD}}\"\r\n    }\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.10.20.14/api/aaaLogin.json",
+					"protocol": "https",
+					"host": [
+						"10",
+						"10",
+						"20",
+						"14"
+					],
+					"path": [
+						"api",
+						"aaaLogin.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Interface Selector",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"infraHPortS\": {\r\n    \"attributes\": {\r\n        \"dn\": \"uni/infra/accportprof-{{ACI_INT_PROF_POST_NAME}}/hports-{{ACI_INT_SELECTOR_POST_NAME}}-typ-range\",\r\n        \"name\": \"{{ACI_INT_SELECTOR_POST_NAME}}\",\r\n        \"rn\": \"hports-{{ACI_INT_SELECTOR_POST_NAME}}-typ-range\",\r\n        \"status\": \"{{ACI_INT_SELECTOR_POST_STATE}}\"\r\n    },\r\n    \"children\": [\r\n        {\r\n        \"infraPortBlk\": {\r\n            \"attributes\": {\r\n            \"dn\": \"uni/infra/accportprof-{{ACI_INT_PROF_POST_NAME}}/hports-{{ACI_INT_SELECTOR_POST_NAME}}-typ-range/portblk-block2\",\r\n            \"fromPort\": \"{{ACI_INT_SELECTOR_POST_PORT_FROM}}\",\r\n            \"toPort\": \"{{ACI_INT_SELECTOR_POST_PORT_TO}}\",                        \r\n            \"name\": \"block2\",\r\n            \"rn\": \"portblk-block2\",\r\n            \"status\": \"created,modified\"\r\n            },\r\n            \"children\": []\r\n        }\r\n        },\r\n        {\r\n        \"infraRsAccBaseGrp\": {\r\n            \"attributes\": {\r\n            \"tDn\": \"uni/infra/funcprof/accbundle-{{ACI_INT_POL_POST_NAME}}\",\r\n            \"status\": \"created,modified\"\r\n            },\r\n            \"children\": []\r\n        }\r\n        }\r\n    ]\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{TARGET_APIC}}/api/node/mo/uni/infra/accportprof-{{ACI_INT_PROF_POST_NAME}}/hports-{{ACI_INT_SELECTOR_POST_NAME}}-typ-range.json",
+					"protocol": "https",
+					"host": [
+						"{{TARGET_APIC}}"
+					],
+					"path": [
+						"api",
+						"node",
+						"mo",
+						"uni",
+						"infra",
+						"accportprof-{{ACI_INT_PROF_POST_NAME}}",
+						"hports-{{ACI_INT_SELECTOR_POST_NAME}}-typ-range.json"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

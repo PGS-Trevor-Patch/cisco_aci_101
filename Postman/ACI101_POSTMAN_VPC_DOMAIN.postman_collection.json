@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "36d88b3b-d826-4117-9a43-85a5da4dba15",
+		"name": "ACI101_POSTMAN_VPC_DOMAIN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19118298"
+	},
+	"item": [
+		{
+			"name": "aaaLogin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"aaaUser\": {\r\n    \"attributes\": {\r\n      \"name\": \"{{USERNAME}}\",\r\n      \"pwd\": \"{{PASSWORD}}\"\r\n    }\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.10.20.14/api/aaaLogin.json",
+					"protocol": "https",
+					"host": [
+						"10",
+						"10",
+						"20",
+						"14"
+					],
+					"path": [
+						"api",
+						"aaaLogin.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VPC Domain",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fabricExplicitGEp\": {\r\n    \"attributes\": {\r\n        \"dn\": \"uni/fabric/protpol/expgep-{{ACI_VPC_DOMAIN_ID_POST_NAME}}\",\r\n        \"name\": \"{{ACI_VPC_DOMAIN_ID_POST_NAME}}\",\r\n        \"id\": \"{{ACI_VPC_DOMAIN_ID_POST_NUMBER}}\",\r\n        \"rn\": \"expgep-{{ACI_VPC_DOMAIN_ID_POST_NAME}}\",\r\n        \"status\": \"{{ACI_VPC_DOMAIN_ID_POST_STATE}}\"\r\n    },\r\n    \"children\": [\r\n        {\r\n        \"fabricNodePEp\": {\r\n            \"attributes\": {\r\n            \"dn\": \"uni/fabric/protpol/expgep-{{ACI_VPC_DOMAIN_ID_POST_NAME}}/nodepep-{{ACI_VPC_DOMAIN_ID_POST_NODE_A}}\",\r\n            \"id\": \"{{ACI_VPC_DOMAIN_ID_POST_NODE_A}}\",\r\n            \"status\": \"created\",\r\n            \"rn\": \"nodepep-{{ACI_VPC_DOMAIN_ID_POST_NODE_A}}\"\r\n            },\r\n            \"children\": []\r\n        }\r\n        },\r\n        {\r\n        \"fabricNodePEp\": {\r\n            \"attributes\": {\r\n            \"dn\": \"uni/fabric/protpol/expgep-{{ACI_VPC_DOMAIN_ID_POST_NAME}}/nodepep-{{ACI_VPC_DOMAIN_ID_POST_NODE_B}}\",\r\n            \"id\": \"{{ACI_VPC_DOMAIN_ID_POST_NODE_B}}\",\r\n            \"status\": \"created\",\r\n            \"rn\": \"nodepep-{{ACI_VPC_DOMAIN_ID_POST_NODE_B}}\"\r\n            },\r\n            \"children\": []\r\n        }\r\n        },\r\n        {\r\n        \"fabricRsVpcInstPol\": {\r\n            \"attributes\": {\r\n            \"tnVpcInstPolName\": \"default\",\r\n            \"status\": \"created,modified\"\r\n            },\r\n            \"children\": []\r\n        }\r\n        }\r\n    ]\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{TARGET_APIC}}/api/node/mo/uni/fabric/protpol/expgep-{{ACI_VPC_DOMAIN_ID_POST_NAME}}.json",
+					"protocol": "https",
+					"host": [
+						"{{TARGET_APIC}}"
+					],
+					"path": [
+						"api",
+						"node",
+						"mo",
+						"uni",
+						"fabric",
+						"protpol",
+						"expgep-{{ACI_VPC_DOMAIN_ID_POST_NAME}}.json"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

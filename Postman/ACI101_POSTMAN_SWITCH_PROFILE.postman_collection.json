@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "de007985-9fdc-4fd0-b0f7-2e9a2603f55d",
+		"name": "ACI101_POSTMAN_SWITCH_PROFILE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19118298"
+	},
+	"item": [
+		{
+			"name": "aaaLogin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"aaaUser\": {\r\n    \"attributes\": {\r\n      \"name\": \"{{USERNAME}}\",\r\n      \"pwd\": \"{{PASSWORD}}\"\r\n    }\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.10.20.14/api/aaaLogin.json",
+					"protocol": "https",
+					"host": [
+						"10",
+						"10",
+						"20",
+						"14"
+					],
+					"path": [
+						"api",
+						"aaaLogin.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Switch Profile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"infraNodeP\": {\r\n    \"attributes\": {\r\n        \"dn\": \"uni/infra/nprof-{{ACI_SW_PROFILE_POST_NAME}}\",\r\n        \"name\": \"{{ACI_SW_PROFILE_POST_NAME}}\",\r\n        \"descr\": \"{{ACI_SW_PROFILE_POST_DESCRIPTION}}\",\r\n        \"rn\": \"nprof-{{ACI_SW_PROFILE_POST_NAME}}\",\r\n        \"status\": \"{{ACI_SW_PROFILE_POST_STATE}}\"\r\n    },\r\n    \"children\": [\r\n        {\r\n        \"infraLeafS\": {\r\n            \"attributes\": {\r\n            \"dn\": \"uni/infra/nprof-{{ACI_SW_PROFILE_POST_NAME}}/leaves-{{ACI_SW_PROFILE_POST_SW_NAME}}-typ-range\",\r\n            \"type\": \"range\",\r\n            \"name\": \"{{ACI_SW_PROFILE_POST_SW_NAME}}\",\r\n            \"rn\": \"leaves-{{ACI_SW_PROFILE_POST_SW_NAME}}-typ-range\",\r\n            \"status\": \"created\"\r\n            },\r\n            \"children\": [\r\n            {\r\n                \"infraNodeBlk\": {\r\n                \"attributes\": {\r\n                    \"dn\": \"uni/infra/nprof-{{ACI_SW_PROFILE_POST_NAME}}/leaves-{{ACI_SW_PROFILE_POST_SW_NAME}}-typ-range/nodeblk-cbd6cea1fa6052b6\",\r\n                    \"from_\": \"{{ACI_SW_PROFILE_POST_NODE_ID_FROM}}\",\r\n                    \"to_\": \"{{ACI_SW_PROFILE_POST_NODE_ID_TO}}\",\r\n                    \"name\": \"cbd6cea1fa6052b6\",\r\n                    \"rn\": \"nodeblk-cbd6cea1fa6052b6\",\r\n                    \"status\": \"created\"\r\n                },\r\n                \"children\": []\r\n                }\r\n            }\r\n            ]\r\n        }\r\n        }\r\n    ]\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{TARGET_APIC}}/api/node/mo/uni/infra/nprof-{{ACI_SW_PROFILE_POST_NAME}}.json",
+					"protocol": "https",
+					"host": [
+						"{{TARGET_APIC}}"
+					],
+					"path": [
+						"api",
+						"node",
+						"mo",
+						"uni",
+						"infra",
+						"nprof-{{ACI_SW_PROFILE_POST_NAME}}.json"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

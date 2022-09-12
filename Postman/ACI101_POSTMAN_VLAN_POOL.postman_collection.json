@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "3d2d6916-3809-44b0-b6ce-5f169602a284",
+		"name": "ACI101_POSTMAN_VLAN_POOL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19118298"
+	},
+	"item": [
+		{
+			"name": "aaaLogin Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"aaaUser\": {\r\n    \"attributes\": {\r\n      \"name\": \"{{USERNAME}}\",\r\n      \"pwd\": \"{{PASSWORD}}\"\r\n    }\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.10.20.14/api/aaaLogin.json",
+					"protocol": "https",
+					"host": [
+						"10",
+						"10",
+						"20",
+						"14"
+					],
+					"path": [
+						"api",
+						"aaaLogin.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VLAN Pool",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fvnsVlanInstP\": {\r\n    \"attributes\": {\r\n        \"dn\": \"uni/infra/vlanns-[{{ACI_VLAN_POOL_POST_NAME}}]-static\",\r\n        \"descr\": \"{{ACI_VLAN_POOL_POST_DESCRIPTION}}\",\r\n        \"name\": \"{{ACI_VLAN_POOL_POST_NAME}}\",\r\n        \"allocMode\": \"static\",\r\n        \"rn\": \"vlanns-[{{ACI_VLAN_POOL_POST_NAME}}]-static\",\r\n        \"status\": \"{{ACI_VLAN_POOL_POST_STATE}}\"\r\n    },\r\n    \"children\": [\r\n        {\r\n        \"fvnsEncapBlk\": {\r\n            \"attributes\": {\r\n            \"dn\": \"uni/infra/vlanns-[{{ACI_VLAN_POOL_POST_NAME}}]-static/from-[vlan-{{ACI_VLAN_POOL_POST_VLAN_FROM}}]-to-[vlan-{{ACI_VLAN_POOL_POST_VLAN_TO}}]\",\r\n            \"from\": \"vlan-{{ACI_VLAN_POOL_POST_VLAN_FROM}}\",\r\n            \"to\": \"vlan-{{ACI_VLAN_POOL_POST_VLAN_TO}}\",\r\n            \"allocMode\": \"static\",\r\n            \"rn\": \"from-[vlan-{{ACI_VLAN_POOL_POST_VLAN_FROM}}]-to-[vlan-{{ACI_VLAN_POOL_POST_VLAN_TO}}]\",\r\n            \"status\": \"created\"\r\n            },\r\n            \"children\": []\r\n        }\r\n        }\r\n    ]\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{TARGET_APIC}}/api/node/mo/uni/infra/vlanns-[{{ACI_VLAN_POOL_POST_NAME}}]-static.json",
+					"protocol": "https",
+					"host": [
+						"{{TARGET_APIC}}"
+					],
+					"path": [
+						"api",
+						"node",
+						"mo",
+						"uni",
+						"infra",
+						"vlanns-[{{ACI_VLAN_POOL_POST_NAME}}]-static.json"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

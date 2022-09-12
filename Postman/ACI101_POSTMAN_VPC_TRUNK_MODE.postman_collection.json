@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "d747d965-2627-4eb9-8b1e-767f1cc0d8db",
+		"name": "ACI101_POSTMAN_VPC_TRUNK_MODE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19118298"
+	},
+	"item": [
+		{
+			"name": "aaaLogin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"aaaUser\": {\r\n    \"attributes\": {\r\n      \"name\": \"{{USERNAME}}\",\r\n      \"pwd\": \"{{PASSWORD}}\"\r\n    }\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.10.20.14/api/aaaLogin.json",
+					"protocol": "https",
+					"host": [
+						"10",
+						"10",
+						"20",
+						"14"
+					],
+					"path": [
+						"api",
+						"aaaLogin.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VPC Trunk Mode",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n              \"fvRsPathAtt\": {\r\n                \"attributes\": {\r\n                  \"encap\": \"vlan-{{ACI_aEPG_POST_VLAN_ID}}\",\r\n                  \"instrImedcy\": \"immediate\",\r\n                  \"tDn\": \"topology/pod-{{ACI_POD_NUMBER}}/protpaths-{{ACI_NODE_A_ID}}-{{ACI_NODE_B_ID}}/pathep-[{{ACI_VPC_INT_POL_POST_NAME}}]\",\r\n                  \"status\": \"{{ACI_VPC_TRUNK_MODE_PORTS_POST_STATE}}\"\r\n                },\r\n                \"children\": []\r\n              }\r\n            }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{TARGET_APIC}}/api/node/mo/uni/tn-{{ACI_TENANT_POST_NAME}}/ap-{{ACI_AP_POST_NAME}}/epg-{{ACI_aEPG_POST_NAME}}/rspathAtt-[topology/pod-{{ACI_POD_NUMBER}}/protpaths-{{ACI_NODE_A_ID}}-{{ACI_NODE_B_ID}}/pathep-[{{ACI_VPC_INT_POL_POST_NAME}}]].json",
+					"protocol": "https",
+					"host": [
+						"{{TARGET_APIC}}"
+					],
+					"path": [
+						"api",
+						"node",
+						"mo",
+						"uni",
+						"tn-{{ACI_TENANT_POST_NAME}}",
+						"ap-{{ACI_AP_POST_NAME}}",
+						"epg-{{ACI_aEPG_POST_NAME}}",
+						"rspathAtt-[topology",
+						"pod-{{ACI_POD_NUMBER}}",
+						"protpaths-{{ACI_NODE_A_ID}}-{{ACI_NODE_B_ID}}",
+						"pathep-[{{ACI_VPC_INT_POL_POST_NAME}}]].json"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
